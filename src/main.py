@@ -1,1 +1,2 @@
-print("asd")
+import numpy as np
+

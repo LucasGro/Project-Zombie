@@ -6,5 +6,5 @@ class Character:
         self.power = power
 
     def move(self, delta_x, delta_y):
-        self.x = x + delta_x
-        self.y = y + delta_y
+        self.x = self.x + delta_x
+        self.y = self.y + delta_y
