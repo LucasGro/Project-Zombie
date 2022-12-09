@@ -1,5 +1,5 @@
 import numpy as np
-from src.classes.common import Character
+from classes.common import Character
 
 
 class Zombie(Character):

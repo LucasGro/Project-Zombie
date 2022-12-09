@@ -1,1 +1,2 @@
-run_simulation()
+def run_simulation():
+    pass
