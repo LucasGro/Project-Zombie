@@ -1,0 +1,7 @@
+{
+    "initial_number": 5,
+    "x": [20, 5],
+    "y": [20, 5],
+    "velocity": [5, 1],
+    "power": [5, 1]
+}
