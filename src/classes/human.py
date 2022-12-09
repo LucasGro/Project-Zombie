@@ -18,14 +18,16 @@ class Human(common.Character):
         vector_to_zombies_norm = [v / (np.linalg.norm(v) + 0.0000001) for v in vector_to_zombies]
         weighted_vector = [vn * (self.power + self.killed) - vn * (z.power + z.n_infected)
                            for vn, z in zip(vector_to_zombies_norm, zombies)] #przeiterowanie po wszystkich zombie i wszystkich wectorach
+        sum_weight_vector = sum(weighted_vector)
+        normalized_vector_sum = sum(weighted_vector / (np.lingalg.norm(sum_weight_vector) +  0.00001)) * self.velocity
 
-        delta_x = 2 * np.random.random() -1
-        delta_y = (1 - delta_x ** 2) ** 0.5 * (1 if np.random.random() > 0.5 else -1)
+        # delta_x = 2 * np.random.random() -1
+        # delta_y = (1 - delta_x ** 2) ** 0.5 * (1 if np.random.random() > 0.5 else -1)
+        #
+        # delta_x *= self.velocity
+        # delta_y *= self.velocity
 
-        delta_x *= self.velocity
-        delta_y *= self.velocity
-
-        return delta_x, delta_y
+        return normalized_vector_sum[0], normalized_vector_sum[1]
 
 human = Human(0, 0, 5, 5)
 zombies = [(10, 12), (12,14)]
