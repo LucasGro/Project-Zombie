@@ -1,11 +1,10 @@
 import numpy as np
+
 from init import initialize
 from simulation import run_simulation
 
-map_2d = np.zeros([100, 100])
+map2d = np.zeros([100, 100])
+humans, zombies = initialize()
 
-print(map_2d)
+result = run_simulation(humans, zombies, map2d)
 
-human_list, zombie_list = initialize()
-print(human_list, zombie_list)
-run_simulation()

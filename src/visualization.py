@@ -1,23 +1,30 @@
-
+import time
 import matplotlib.pyplot as plt
 
 
-def visualize_simulation(humans, zombies, map2d, t):
-    map2d_cp = map2d.copy()
+def visualize_simulation(humans, zombies, map2d, t, clf=True):
+    showmap = map2d.copy()
+
     for h in humans:
         x = round(h.x)
         y = round(h.y)
-        map2d_cp[y-1:y+1, x-1:x+1] = 0.8
+        showmap[y-1:y+1, x-1:x+1] = 0.8
 
     for z in zombies:
         x = round(z.x)
         y = round(z.y)
-        map2d_cp[y-1:y+1, x-1:x+1] = 0.5
+        showmap[y-1:y+1, x-1:x+1] = 0.5
 
-    plt.figure("Symulacja")
-    plt.imshow(map2d_cp, cmap='nipy_spectral', vmin=0, vmax=1)
-    plt.title(f"Symulacja {t}", fontsize=15)
+    # if t % 5 == 0:
+    plt.figure("Simulation")  #
+    plt.imshow(showmap, cmap="nipy_spectral", vmin=0, vmax=1)
+    plt.title("Time step: " + str(t), fontsize=16)
     plt.show(block=False)
+    if clf:
+        plt.pause(0.5)
+        plt.clf()
+    else:
+        time.sleep(3)
+    # time.sleep(.5)
+    # plt.close('all')
 
-    plt.pause(0.5)
-    plt.clf()

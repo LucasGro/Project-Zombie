@@ -1,35 +1,36 @@
 import json
 import numpy as np
+
 from classes.human import Human
 from classes.zombie import Zombie
 
 
 def initialize():
-    with open("conf/human.json", "r") as file:
-        human_config = json.load(file)
+    with open("conf/human.json") as f:
+        human_config = json.load(f)
 
-    with open("conf/zombie.json", "r") as file:
-        zombie_config = json.load(file)
+    with open("conf/zombie.json") as f:
+        zombie_config = json.load(f)
 
-    human_list = []
-    zombie_list = []
+    humans = []
+    zombies = []
 
-    for i in range(human_config["initial_number"]):
-        # x = np.random.normal(human_config["x"][0], human_config["x"][1])
+    for _ in range(human_config["initial_number"]):
         x = np.random.normal(*human_config["x"])
         y = np.random.normal(*human_config["y"])
         velocity = np.random.normal(*human_config["velocity"])
         power = np.random.normal(*human_config["power"])
-        h = Human(x, y, velocity, power)
-        human_list.append(h)
 
-    for i in range(zombie_config["initial_number"]):
-        # x = np.random.normal(zombie_config["x"][0], zombie_config["x"][1])
+        single_human = Human(x=x, y=y, velocity=velocity, power=power)
+        humans.append(single_human)
+
+    for _ in range(zombie_config["initial_number"]):
         x = np.random.normal(*zombie_config["x"])
         y = np.random.normal(*zombie_config["y"])
         velocity = np.random.normal(*zombie_config["velocity"])
         power = np.random.normal(*zombie_config["power"])
-        z = Zombie(x, y, velocity, power)
-        zombie_list.append(z)
 
-    return human_list, zombie_list
+        single_zombie = Zombie(x=x, y=y, velocity=velocity, power=power)
+        zombies.append(single_zombie)
+
+    return humans, zombies
